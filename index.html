@@ -41,7 +41,7 @@
 <body class="min-h-screen flex items-center justify-center p-6">
 
     <div x-data="{ 
-            step: 1, 
+            step: 0, 
             formId: 'xdabvwgn', 
             fecha: '', 
             comida: '', 
@@ -73,9 +73,14 @@
         <!-- Pantalla de Éxito -->
         <div x-show="completado" x-cloak class="text-center py-10 step-transition">
             <h2 class="font-romantic text-5xl text-pink-500 mb-6">¡Gracias mi amor!</h2>
-            <p class="text-gray-600 mb-6">Ya recibí tus respuestas. No puedo esperar para celebrar juntos. Eres lo mejor
-                de mi vida. ❤️</p>
-            <div class="text-6xl">💌</div>
+            <p class="text-gray-600 mb-6">Ya recibí tus respuestas princesa, por ahora disfrutemos de tu cumple hoy... te esperan regalos 
+                mi vida :D</p>
+            <div class="flex justify-center mt-6">
+                <div class="tenor-gif-embed rounded-2xl overflow-hidden shadow-lg border-4 border-pink-100" data-postid="26374041" data-share-method="host" data-aspect-ratio="2.40601" data-width="100%">
+                    <a href="https://tenor.com/view/bh187-minions-minions-the-rise-of-gru-heart-hearts-gif-26374041">Bh187 Minions GIF</a> from <a href="https://tenor.com/search/bh187-gifs">Bh187 GIFs</a>
+                </div>
+                <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+            </div>
         </div>
 
         <!-- Flujo del Formulario -->
@@ -83,16 +88,32 @@
 
             <!-- Encabezado Fijo -->
             <div class="text-center mb-8">
-                <p class="text-pink-400 text-xs font-bold tracking-tighter uppercase mb-1">Especial para ti</p>
-                <h1 class="font-romantic text-4xl text-pink-600">¿Cómo celebramos?</h1>
+                <p class="text-pink-400 text-xs font-bold tracking-tighter uppercase mb-1">Especial para ti mi cosita
+                    tierna</p>
+                <h1 class="font-romantic text-4xl text-pink-600">¿Cómo le celebramos a mi TatiLove?</h1>
+            </div>
+
+            <!-- PASO 0: BIENVENIDA -->
+            <div x-show="step === 0" x-transition class="step-transition text-center">
+                <div class="text-6xl mb-6 animate-bounce">🎂</div>
+                <h2 class="font-romantic text-3xl text-pink-600 mb-4">¡Feliz Cumpleaños My love!</h2>
+                <p class="text-gray-600 mb-8 leading-relaxed">
+                    Feliz cumpleaños a la futura medica pediatra mas existosa del mundo, te amo mucho mucho mucho mucho
+                    mucho hasta el infinito y mas allá.
+                    Vas a pasar un muuuy lindo cumpleaños. ✨
+                </p>
+                <button @click="step = 1"
+                    class="w-full py-4 rounded-2xl bg-pink-500 text-white font-bold shadow-lg hover:bg-pink-600 transition-all">
+                    ¿Te puedo preguntar algo mi amol?
+                </button>
             </div>
 
             <!-- PASO 1: LA FECHA -->
             <div x-show="step === 1" x-transition class="step-transition">
-                <p class="text-center text-gray-500 mb-6 italic text-sm text-balance">Primero, ¿qué día nos vemos para
-                    festejarte como mereces?</p>
+                <p class="text-center text-gray-500 mb-6 italic text-sm text-balance">Primerooo, ¿qué día te queda mejor
+                    para festejarte como mereces? ¿Que dia estas libre mi bebé?</p>
                 <div class="grid gap-3">
-                    <template x-for="opc in ['Este Sábado', 'El Domingo', 'Día Sorpresa']">
+                    <template x-for="opc in ['Este Sábado', 'El Domingo', 'El Lunes', 'Otro dia']">
                         <button @click="fecha = opc; step = 2"
                             class="w-full py-4 rounded-2xl bg-white border-2 border-pink-50 text-pink-600 font-semibold hover:border-pink-300 hover:bg-pink-50 transition-all shadow-sm">
                             <span x-text="opc"></span>
@@ -104,11 +125,11 @@
             <!-- PASO 2: LA COMIDA -->
             <div x-show="step === 2" x-cloak x-transition class="step-transition">
                 <button @click="step = 1" class="text-pink-300 text-xs mb-4 hover:text-pink-500">← Volver</button>
-                <p class="text-center text-gray-500 mb-6 italic text-sm">¿Qué te gustaría comer? (Tú eliges todo hoy ✨)
+                <p class="text-center text-gray-500 mb-6 italic text-sm">¿Qué te gustaría comer? Todas incluyen postre hermosaaaaa✨
                 </p>
                 <div class="grid grid-cols-2 gap-3">
                     <template
-                        x-for="item in [{n:'Sushi', i:'🍣'}, {n:'Pastas', i:'🍝'}, {n:'Hamburguesa', i:'🍔'}, {n:'Brunch', i:'🥞'}, {n:'Tacos', i:'🌮'}, {n:'Postres', i:'🍰'}]">
+                        x-for="item in [{n:'Sushi o Ramén', i:'🍣'}, {n:'Pasta/Comida italiana', i:'🍝'}, {n:'Comida Griega', i:'🥙'}, {n:'Turkhouse', i:'🕌'}, {n:'El Corral', i:'🍔'}, {n:'Uki', i:'🍱'}, {n:'Brunch', i:'🥞'}, {n:'Storia D\'Amore', i:'❤️'} ]">
                         <button @click="comida = item.n; step = 3"
                             class="p-4 rounded-2xl bg-white border-2 border-pink-50 hover:border-pink-300 hover:bg-pink-50 transition-all flex flex-col items-center">
                             <span class="text-3xl mb-1" x-text="item.i"></span>
@@ -123,8 +144,7 @@
                 <button @click="step = 2" class="text-pink-300 text-xs mb-4 hover:text-pink-500">← Volver</button>
                 <p class="text-center text-gray-500 mb-6 italic text-sm">¿Cuál es el plan perfecto para cerrar?</p>
                 <div class="grid gap-3">
-                    <template
-                        x-for="p in ['Cine y arrumacos', 'Cena romántica', 'Caminata y helado', 'Noche de pelis en casa']">
+                    <template x-for="p in ['Sorpresa', 'Cine', 'Cena romántica', 'Caminata con helado']">
                         <button @click="plan = p"
                             :class="plan === p ? 'border-pink-400 bg-pink-50' : 'border-pink-50 bg-white'"
                             class="w-full py-4 rounded-2xl border-2 text-pink-600 font-semibold hover:border-pink-300 transition-all shadow-sm text-sm">
@@ -155,7 +175,7 @@
 
             <!-- Footer con amor -->
             <div class="mt-8 text-center">
-                <p class="font-romantic text-xl text-pink-400">Te amo demasiado</p>
+                <p class="font-romantic text-xl text-pink-400">Te amo demasiado. Es decir mucho mucho... +&infin;</p>
             </div>
         </div>
     </div>
